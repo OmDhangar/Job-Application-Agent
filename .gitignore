@@ -1,0 +1,74 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Poetry
+# We do NOT ignore poetry.lock since this is an application, but we can list poetry-specific cache/config if any
+# .poetry/
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# OS / System
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment / Secrets
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Databases and local persistence
+*.db
+*.sqlite
+*.sqlite3
+*.log
+
+# Caches and test tools
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.cache/
+
+# Playwright / Browser automation
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.local-browsers
