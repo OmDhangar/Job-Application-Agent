@@ -1,8 +1,6 @@
 """
-src/ui/app.py
-
-Streamlit MVP — Job Acquisition OS
-Multi-page app. Each page is a separate concern.
+src/ui/app.py  —  Streamlit multi-page entry point.
+Run: streamlit run src/ui/app.py
 """
 import streamlit as st
 
@@ -13,35 +11,33 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# Sidebar navigation
 with st.sidebar:
-    st.image("https://via.placeholder.com/200x60?text=Job+OS", use_column_width=True)
+    st.markdown("## 🎯 Job Acquisition OS")
     st.markdown("---")
-    st.markdown("### Navigation")
-    st.page_link("pages/1_Job_Discovery.py",  label="🔍 Job Discovery",     icon="🔍")
-    st.page_link("pages/2_Resume_Tailor.py",  label="📄 Resume Tailoring",  icon="📄")
-    st.page_link("pages/3_Cold_Email.py",     label="✉️ Cold Email",        icon="✉️")
-    st.page_link("pages/4_Applications.py",   label="📊 Applications",      icon="📊")
+    st.page_link("pages/1_Job_Discovery.py",  label="🔍 Job Discovery")
+    st.page_link("pages/2_Resume_Tailor.py",  label="📄 Resume Tailoring")
+    st.page_link("pages/3_Cold_Email.py",     label="✉️  Cold Outreach")
+    st.page_link("pages/4_Applications.py",   label="📊 Applications")
     st.markdown("---")
-    st.caption("Powered by local AI + Gemini")
+    st.caption("Local AI + Gemini · pdflatex · pgvector")
 
-# Home page
 st.title("🎯 Job Acquisition Operating System")
+st.markdown(
+    "> *Maximum intelligence, minimum API cost.*"
+)
+
+col1, col2, col3, col4 = st.columns(4)
+col1.metric("Jobs in DB",          "—")
+col2.metric("Applications",        "—")
+col3.metric("Avg ATS Score",       "—")
+col4.metric("Interview Probability","—")
+
+st.markdown("---")
 st.markdown("""
-Your AI-powered job search command center.
-
-| Module | What it does |
+| Module | Description |
 |--------|-------------|
-| 🔍 **Job Discovery** | Scrape and rank opportunities from 10+ sources |
-| 📄 **Resume Tailoring** | AI-strategic tailoring with identity preservation |
-| ✉️ **Cold Email** | Deeply personalized outreach generation |
-| 📊 **Applications** | Track every application, reply, and interview |
+| 🔍 **Job Discovery** | Semantic search across 10+ sources — ranked by composite score |
+| 📄 **Resume Tailoring** | LaTeX / Markdown tailoring with identity preservation + PDF compile |
+| ✉️ **Cold Outreach** | 120-word personalised emails that don't sound like cold emails |
+| 📊 **Applications** | Full lifecycle tracking with funnel analytics |
 """)
-
-col1, col2, col3 = st.columns(3)
-with col1:
-    st.metric("Jobs Discovered", "—", help="Total jobs in database")
-with col2:
-    st.metric("Applications", "—", help="Active applications")
-with col3:
-    st.metric("Avg Interview Probability", "—", help="Across tailored resumes")

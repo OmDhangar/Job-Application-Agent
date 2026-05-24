@@ -22,11 +22,11 @@ class Settings(BaseSettings):
 
     # ── AI: Cloud ─────────────────────────────────────────────
     gemini_api_key: str = Field("", validation_alias="GEMINI_API_KEY")
-    gemini_model: str = Field("gemini-2.0-flash", validation_alias="GEMINI_MODEL")
+    gemini_model: str = Field("gemini-2.5-flash", validation_alias="GEMINI_MODEL")
 
     # ── AI: Local ─────────────────────────────────────────────
     ollama_base_url: str = Field("http://localhost:11434", validation_alias="OLLAMA_BASE_URL")
-    ollama_model: str = Field("qwen2.5:7b-instruct", validation_alias="OLLAMA_MODEL")
+    ollama_model: str = Field("gemma3n:e4b-it-q4_K_M", validation_alias="OLLAMA_MODEL")
 
     # ── Embeddings ────────────────────────────────────────────
     embedding_model: str = Field("BAAI/bge-base-en-v1.5", validation_alias="EMBEDDING_MODEL")

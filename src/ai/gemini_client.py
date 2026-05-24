@@ -1,17 +1,8 @@
-"""
-src/ai/gemini_client.py
-
-Thin async wrapper around Google Gemini.
-Handles retries, rate-limit detection, and clean error propagation.
-"""
+"""src/ai/gemini_client.py"""
 from __future__ import annotations
-
-import asyncio
-import logging
-
+import asyncio, logging
 import google.genai as genai
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
-
 from src.utils.config import Settings
 
 logger = logging.getLogger(__name__)
@@ -34,21 +25,17 @@ class GeminiClient:
         reraise=True,
     )
     async def generate(self, prompt: str, system: str | None = None) -> str:
-        full_prompt = f"{system}\n\n{prompt}" if system else prompt
+        full = f"{system}\n\n{prompt}" if system else prompt
+        loop = asyncio.get_event_loop()
         try:
-            # google-genai is sync; run in executor to avoid blocking event loop
-            loop = asyncio.get_event_loop()
-            response = await loop.run_in_executor(
+            resp = await loop.run_in_executor(
                 None,
                 lambda: self._client.models.generate_content(
-                    model=self._model,
-                    contents=full_prompt,
+                    model=self._model, contents=full
                 ),
             )
-            return response.text
+            return resp.text
         except Exception as exc:
-            msg = str(exc).lower()
-            if "quota" in msg or "rate" in msg or "429" in msg:
-                logger.warning("Gemini rate limit hit: %s", exc)
+            if any(x in str(exc).lower() for x in ("quota", "rate", "429")):
                 raise GeminiRateLimitError(str(exc)) from exc
             raise
