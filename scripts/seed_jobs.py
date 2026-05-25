@@ -9,7 +9,14 @@ from __future__ import annotations
 import asyncio
 import hashlib
 import logging
+import pathlib
+import sys
 from datetime import datetime, timezone, timedelta
+
+# Add project root to sys.path to allow running directly
+project_root = pathlib.Path(__file__).resolve().parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
 
 from src.database.connection import get_session
 from src.database.models import Company, Job

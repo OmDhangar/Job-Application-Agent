@@ -44,7 +44,7 @@ def get_http_client() -> httpx.AsyncClient:
 
 @lru_cache(maxsize=1)
 def get_ollama() -> OllamaClient:
-    return OllamaClient(http_client=get_http_client())
+    return OllamaClient(http=get_http_client())
 
 
 @lru_cache(maxsize=1)

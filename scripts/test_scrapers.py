@@ -17,9 +17,16 @@ import argparse
 import asyncio
 import json
 import logging
+import pathlib
+import sys
 from dataclasses import asdict
 
 import httpx
+
+# Add project root to sys.path to allow running directly
+project_root = pathlib.Path(__file__).resolve().parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
 
 from src.adapters.ashby import AshbyAdapter
 from src.adapters.greenhouse import GreenhouseAdapter

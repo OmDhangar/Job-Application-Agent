@@ -8,10 +8,10 @@ settings = Settings()
 
 
 class OllamaClient:
-    def __init__(self, http: httpx.AsyncClient | None = None) -> None:
+    def __init__(self, http: httpx.AsyncClient | None = None, http_client: httpx.AsyncClient | None = None) -> None:
         self._base = settings.ollama_base_url
         self._model = settings.ollama_model
-        self._http = http or httpx.AsyncClient(timeout=120)
+        self._http = http or http_client or httpx.AsyncClient(timeout=120)
 
     async def generate(self, prompt: str, system: str | None = None) -> str:
         payload = {
