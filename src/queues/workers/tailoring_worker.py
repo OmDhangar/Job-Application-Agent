@@ -50,7 +50,7 @@ async def handle_tailoring(payload: dict) -> None:
     logger.info("Initializing tailoring services for application: %s", app_id_str)
     
     cache = InferenceCache()
-    http_client = httpx.AsyncClient()
+    http_client = httpx.AsyncClient(timeout=httpx.Timeout(timeout=300.0, connect=10.0))
     local = OllamaClient(http_client)
     cloud = GeminiClient()
     router = AIRouter(cache=cache, local=local, cloud=cloud)

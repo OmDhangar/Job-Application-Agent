@@ -39,7 +39,10 @@ def get_cache() -> InferenceCache:
 
 @lru_cache(maxsize=1)
 def get_http_client() -> httpx.AsyncClient:
-    return httpx.AsyncClient(timeout=60, follow_redirects=True)
+    return httpx.AsyncClient(
+        timeout=httpx.Timeout(timeout=300.0, connect=10.0),
+        follow_redirects=True,
+    )
 
 
 @lru_cache(maxsize=1)

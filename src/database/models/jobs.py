@@ -66,6 +66,7 @@ class Job(Base):
     enriched: Mapped[bool] = mapped_column(Boolean, default=False)
     opportunity_score: Mapped[Optional[float]] = mapped_column(Float, index=True)
     fingerprint: Mapped[Optional[str]] = mapped_column(String, unique=True)
+    hr_email: Mapped[Optional[str]] = mapped_column(String, nullable=True)
     raw_metadata: Mapped[Optional[dict]] = mapped_column(JSONB)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(

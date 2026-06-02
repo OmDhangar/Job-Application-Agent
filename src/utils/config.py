@@ -22,7 +22,7 @@ class Settings(BaseSettings):
 
     # ── AI: Cloud ─────────────────────────────────────────────
     gemini_api_key: str = Field("", validation_alias="GEMINI_API_KEY")
-    gemini_model: str = Field("gemini-2.5-flash", validation_alias="GEMINI_MODEL")
+    gemini_model: str = Field("gemini-3.5-flash", validation_alias="GEMINI_MODEL")
 
     # ── AI: Local ─────────────────────────────────────────────
     ollama_base_url: str = Field("http://localhost:11434", validation_alias="OLLAMA_BASE_URL")

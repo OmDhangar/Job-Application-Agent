@@ -41,7 +41,7 @@ async def handle_enrich(payload: dict) -> None:
     from uuid import UUID
 
     cache = InferenceCache()
-    http = httpx.AsyncClient()
+    http = httpx.AsyncClient(timeout=httpx.Timeout(timeout=300.0, connect=10.0))
     local = OllamaClient(http)
     cloud = GeminiClient()
     router = AIRouter(cache=cache, local=local, cloud=cloud)

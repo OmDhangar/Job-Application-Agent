@@ -1,22 +1,47 @@
 \documentclass[letterpaper,10pt]{article}
+
+\usepackage{latexsym}
 \usepackage[empty]{fullpage}
 \usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
 \usepackage{fancyhdr}
+\usepackage[english]{babel}
 \usepackage{tabularx}
+
+\input{glyphtounicode}
+
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0pt}
-\addtolength{\oddsidemargin}{-0.6in}
-\addtolength{\textwidth}{1.2in}
-\addtolength{\topmargin}{-.85in}
-\addtolength{\textheight}{1.75in}
+\renewcommand{\footrulewidth}{0pt}
+
+% Margins
+\addtolength{\oddsidemargin}{-0.58in}
+\addtolength{\textwidth}{1.16in}
+\addtolength{\topmargin}{-.82in}
+\addtolength{\textheight}{1.72in}
+
+\urlstyle{same}
+
 \raggedbottom
 \raggedright
 \setlength{\tabcolsep}{0in}
-\titleformat{\section}{\vspace{-6pt}\bfseries\raggedright\large}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
-\newcommand{\resumeItem}[1]{\item\small{#1}\vspace{-1pt}}
+
+% Sections
+\titleformat{\section}{
+  \vspace{-5pt}\bfseries\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\pdfgentounicode=1
+
+% Custom Commands
+\newcommand{\resumeItem}[1]{
+  \item\small{{#1}\vspace{-1.5pt}}
+}
+
 \newcommand{\resumeSubheading}[4]{
   \item
   \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
@@ -24,51 +49,175 @@
     \textit{\small#3} & \textit{\small #4} \\
   \end{tabular*}\vspace{-5pt}
 }
+
 \newcommand{\resumeProjectHeading}[2]{
-  \item\vspace{1pt}
+  \item
   \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
     \small#1 & \small #2 \\
-  \end{tabular*}\vspace{-4pt}
+  \end{tabular*}\vspace{-5pt}
 }
+
 \newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+
 \newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*,itemsep=-1pt,topsep=0pt]}
+
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-4pt}}
 
+%-------------------------------------------
 \begin{document}
 
+%----------HEADING----------
+
 \begin{center}
-  \textbf{\Huge \scshape Om Dhangar} \textbar{} \Large Software Developer \\
-  \vspace{1pt}
-  \small
-  \href{mailto:omdhangar51@gmail.com}{omdhangar51@gmail.com} \textbar{}
-  Shirpur, Maharashtra
+    \textbf{\Huge \scshape Om Dhangar} \textbar{} \Large Software Developer \\
+
+    \small
+    \href{mailto:omdhangar51@gmail.com}{omdhangar51@gmail.com} \textbar{}
+    \href{https://www.linkedin.com/in/om-dhangar-21219627a}{LinkedIn} \textbar{}
+    \href{https://github.com/OmDhangar}{GitHub} \textbar{}
+    \href{https://leetcode.com/omdhangar24}{LeetCode} \textbar{}
+    \href{https://omdhangar.vercel.app/}{Portfolio} \textbar{}
+    Shirpur, Maharashtra
 \end{center}
 
-\section{Experience}
+\vspace{-14pt}
+
+%-----------SUMMARY-----------
+
+\section{Summary}
 \resumeSubHeadingListStart
-  \resumeSubheading{Backend Developer Intern}{Apr 2025 -- Jul 2025}{ECOEVR Mobility}{Remote}
-  \resumeItemListStart
-    \resumeItem{Designed REST APIs using Node.js and Express.js.}
-    \resumeItem{Containerized services with Docker, reducing deployment failures by 60\%.}
-  \resumeItemListEnd
+\resumeItem{Full-Stack Software Developer and Computer Science Engineering student with hands-on experience designing and deploying scalable web applications, REST APIs, and database-driven backend services using Node.js, React.js, PostgreSQL, and MongoDB. Experienced in owning products from implementation and testing to deployment and optimization, with a strong focus on problem solving, workflow automation, and production-grade system design. }
 \resumeSubHeadingListEnd
 
-\section{Projects}
-\resumeSubHeadingListStart
-  \resumeProjectHeading{\textbf{Microservices E-Commerce Platform}}{2024}
-  \resumeItemListStart
-    \resumeItem{Architected 9-service event-driven platform with Kafka and RabbitMQ.}
-    \resumeItem{Implemented dual-database architecture with PostgreSQL and MongoDB.}
-  \resumeItemListEnd
-\resumeSubHeadingListEnd
+\vspace{-14pt}
+
+%-----------SKILLS-----------
 
 \section{Skills}
-\begin{itemize}[leftmargin=0.15in, label={}]
-  \resumeItem{\textbf{Languages:} Python, JavaScript, TypeScript, SQL, C++}
-  \resumeItem{\textbf{Backend:} Node.js, FastAPI, REST APIs, Microservices, Kafka, RabbitMQ}
-  \resumeItem{\textbf{Databases:} PostgreSQL, MongoDB, Redis}
-  \resumeItem{\textbf{Tools:} Docker, AWS S3, Git}
+
+\begin{itemize}[leftmargin=0.15in, label={}, itemsep=-2pt, topsep=0pt]
+
+\resumeItem{\textbf{Programming Languages:} JavaScript (ES6+), TypeScript, Python, SQL, C++}
+
+\resumeItem{\textbf{Frontend Development:} React.js, Next.js, Tailwind CSS}
+
+\resumeItem{\textbf{Backend Development:} Node.js, Express.js, FastAPI, REST API Development, Authentication \& Authorization, RBAC, JWT}
+
+\resumeItem{\textbf{Databases \& Caching:} PostgreSQL, MongoDB, Redis, Database Schema Design, Data Modeling}
+
+\resumeItem{\textbf{System Design \& Architecture:} Data Structures \& Algorithms, Object-Oriented Programming, System Design, Scalable Backend Architecture, Workflow Automation}
+
+\resumeItem{\textbf{DevOps \& Deployment:} Docker, Git, AWS S3, CI/CD Fundamentals, Production Deployment, API Documentation}
+
+\resumeItem{\textbf{AI \& Automation:} LangChain, AI Agents, Ollama, Workflow Orchestration}
+
+\resumeItem{\textbf{Developer Tools:} Cursor, Claude, OpenAI, Postman, GitHub}
+
 \end{itemize}
 
+\vspace{-10pt}
+
+%-----------EXPERIENCE-----------
+
+\section{Experience}
+
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{Freelance Full-Stack Developer}{Aug 2025 -- Dec 2025}
+{Businesses \& Government Organizations}{Remote}
+
+\resumeItemListStart
+
+\resumeItem{Engineered and deployed 3+ production-grade applications using React.js, Node.js, and PostgreSQL, digitizing government and business workflows for 200+ users and reducing operational processing time by 40\%.}
+
+\resumeItem{Designed RBAC-secured REST APIs with JWT authentication and modular backend architecture, improving application security and enabling scalable feature integration across client platforms.}
+
+\resumeItem{Owned end-to-end product delivery including implementation, testing, deployment, and workflow automation using MongoDB-backed services and cloud-integrated infrastructure.}
+
+\resumeItemListEnd
+
+\resumeSubheading
+{Software Engineering Intern}{Apr 2025 -- Jul 2025}
+{ECOEVR Mobility}{Remote}
+
+\resumeItemListStart
+
+\resumeItem{Developed modular backend services and REST APIs using Node.js and Express.js, enabling secure communication across 5+ production endpoints.}
+
+\resumeItem{Containerized backend applications using Docker and streamlined deployment workflows, reducing environment-related failures by 60\% across staging environments.}
+
+\resumeItem{Implemented authentication middleware, error handling, and API performance monitoring mechanisms, improving backend reliability and debugging efficiency during Agile sprint cycles.}
+
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{-6pt}
+
+%-----------PROJECTS-----------
+
+\section{Projects}
+
+\resumeSubHeadingListStart
+
+\resumeProjectHeading
+{\textbf{Gram Panchayat Citizen Platform} \textemdash{} \textit{React.js, Node.js, MongoDB, PostgreSQL, AWS S3} \textbar{} \href{https://github.com/OmDhangar}{GitHub}}{}
+
+\resumeItemListStart
+
+\resumeItem{Engineered a full-stack citizen service platform digitizing government workflows for 200+ users through automated request and document management pipelines.}
+
+\resumeItem{Designed RBAC-secured REST APIs, service dashboards, and AWS S3-based document storage systems, enabling secure and auditable administrative workflow management.}
+
+\resumeItem{Architected a dual-database backend using PostgreSQL and MongoDB, improving scalability and structured data handling for real-world government operations.}
+
+\resumeItemListEnd
+
+\resumeProjectHeading
+{\textbf{AI Loan Approval Agent} \textemdash{} \textit{Python, FastAPI, Redis, Docker, LangChain} \textbar{} \href{https://github.com/OmDhangar/SOC-triage-agent}{GitHub}}{}
+
+\resumeItemListStart
+
+\resumeItem{Developed an AI-driven workflow automation system using FastAPI and LangChain agents, streamlining loan verification and approval routing processes.}
+
+\resumeItem{Designed modular multi-step agent pipelines for document validation and decision orchestration, enabling reliable execution of complex approval workflows.}
+
+\resumeItem{Deployed Dockerized backend services with Redis-based state management, reducing estimated loan processing time by 60\% through automated workflow execution.}
+
+\resumeItemListEnd
+
+\resumeProjectHeading
+{\textbf{E-Commerce Platform -- Ecom Mahalaxmi} \textemdash{} \textit{React.js, Node.js, Express.js, MongoDB} \textbar{} \href{https://github.com/OmDhangar}{GitHub}}{}
+
+\resumeItemListStart
+
+\resumeItem{Built a scalable MERN-based e-commerce platform with modular REST APIs supporting authentication, product management, and order lifecycle handling.}
+
+\resumeItem{Designed optimized MongoDB schemas and backend workflows, improving transactional data organization and operational efficiency.}
+
+\resumeItem{Implemented JWT-based authentication and protected route middleware, securing transactional operations and backend service access.}
+
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+\vspace{-8pt}
+
+%-----------ACHIEVEMENTS-----------
+
+\section{Achievements \& Leadership}
+
+\resumeSubHeadingListStart
+
+\resumeItem{Published an IEEE research paper on AI Agentic Systems with Microservices Architecture, demonstrating practical understanding of scalable distributed systems and AI-driven workflow orchestration.}
+
+\resumeItem{Secured 1st place among 25+ teams at the Yugantar NMIMS Hackathon by developing and delivering a production-oriented software solution within a 48-hour engineering sprint.}
+
+\resumeItem{Led competitive programming and technical collaboration initiatives as Competitive Programming Lead at the Coding Club of NMIMS Shirpur, mentoring peers on Data Structures, Algorithms, and problem-solving practices.}
+
+\resumeSubHeadingListEnd
+
+%-------------------------------------------
 \end{document}

@@ -33,8 +33,16 @@ class LatexCompiler:
         self.timeout = timeout
         self._pdflatex = shutil.which("pdflatex")
         if not self._pdflatex:
+            import platform
+            system_os = platform.system().lower()
+            if "windows" in system_os:
+                install_msg = "Install MiKTeX (winget install MiKTeX.MiKTeX) or TeX Live (winget install TUG.TeXLive)"
+            elif "darwin" in system_os:
+                install_msg = "Install MacTeX (brew install --cask mactex-no-gui)"
+            else:
+                install_msg = "sudo apt install texlive-full"
             logger.warning(
-                "pdflatex not found. Install: sudo apt install texlive-full. "
+                f"pdflatex not found. Install instructions: {install_msg}. "
                 "PDF output will be disabled."
             )
 
@@ -62,23 +70,39 @@ class LatexCompiler:
 
             # Run pdflatex twice (resolves section refs)
             for run in range(2):
+                cmd = [
+                    self._pdflatex,
+                    "-interaction=nonstopmode",
+                    "-halt-on-error",
+                    "-output-directory", tmpdir,
+                ]
+                
+                # Check if this is MiKTeX (common on Windows) to prevent interactive package prompts
+                if "miktex" in self._pdflatex.lower():
+                    cmd.append("-package-install=auto")
+                
+                cmd.append(str(tex_path))
+
                 result = subprocess.run(
-                    [
-                        self._pdflatex,
-                        "-interaction=nonstopmode",
-                        "-halt-on-error",
-                        "-output-directory", tmpdir,
-                        str(tex_path),
-                    ],
+                    cmd,
                     capture_output=True,
                     text=True,
                     timeout=self.timeout,
                     cwd=tmpdir,
                 )
                 if result.returncode != 0 and run == 1:
-                    log = log_path.read_text(errors="ignore") if log_path.exists() else result.stdout
-                    logger.error("pdflatex failed (run %d): %s", run + 1, log[-500:])
-                    return None, log
+                    log_file = log_path.read_text(errors="ignore") if log_path.exists() else ""
+                    # Combine all diagnostic sources for visibility
+                    diag_parts = []
+                    if result.stderr and result.stderr.strip():
+                        diag_parts.append(f"STDERR: {result.stderr.strip()[-500:]}")
+                    if result.stdout and result.stdout.strip():
+                        diag_parts.append(f"STDOUT: {result.stdout.strip()[-500:]}")
+                    if log_file:
+                        diag_parts.append(f"LOG: {log_file[-500:]}")
+                    full_diag = "\n".join(diag_parts) or "No diagnostic output captured"
+                    logger.error("pdflatex failed (run %d):\n%s", run + 1, full_diag)
+                    return None, full_diag
 
             if not pdf_path.exists():
                 return None, "PDF not generated despite exit code 0"
